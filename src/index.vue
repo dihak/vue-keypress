@@ -17,6 +17,12 @@ export default {
       type: Array, // ['shiftKey', 'ctrlKey', 'altKey', 'metaKey']
       default: () => [],
     },
+
+    handleInput: {
+      type: Boolean,
+      default: false,
+    },
+
     preventDefault: {
       type: Boolean,
     },
@@ -65,6 +71,8 @@ export default {
     /** *************************** */
     eventHandler(expectedEvent) {
       return (event) => {
+        if (!this.handleInput && event.srcElement.tagName == 'INPUT') return
+
         const emitResponse = (emitEvent, message) => {
           this.$emit(emitEvent, {
             event,
