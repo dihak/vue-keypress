@@ -56,8 +56,9 @@ export default {
     },
     addEventListener(expectedEvent) {
       let listener = this.eventHandler(expectedEvent)
-      window.addEventListener(expectedEvent.keyEvent, listener)
-      this.keyListeners.push({ expectedEvent, listener })
+      let keyEvent = expectedEvent.keyEvent
+      window.addEventListener(keyEvent, listener)
+      this.keyListeners.push({ keyEvent, listener })
     },
 
     /** Handling per keypress event */
